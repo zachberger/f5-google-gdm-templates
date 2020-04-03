@@ -133,8 +133,14 @@ def Instance(context):
               ]
             },
             'zone': context.properties['availabilityZone1'],
-            'metadata': Metadata(context)
-
+            'metadata': Metadata(context),
+            'scheduling': {
+                'node_affinities': {
+                    'key': "group",
+                    'operator': "IN",
+                    'values': [context.properties['affinityLabel']]
+                }
+            }
         }
     }
 
